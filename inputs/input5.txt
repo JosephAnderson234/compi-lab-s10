@@ -1,0 +1,8 @@
+def void main():
+    var int x;
+    x = 1;
+    for i = 1 to 10 do
+        for i = 2 to 10 do
+            print(i)
+    endfor
+endfun
