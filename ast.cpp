@@ -15,6 +15,16 @@ string Exp::binopToChar(BinaryOp op) {
         case LET_OP:   return "<";
         case POW_OP:   return "**";
         case EQUIV_OP:   return "=";
+        case LORT_OP:   return "<=";
+        case AND_OP:   return "and";
+        case OR_OP:   return "or";
+        default:       return "?";
+    }
+}
+
+string Exp::unopToChar(UnaryOp op) {
+    switch (op) {
+        case NOT_OP:   return "not";
         default:       return "?";
     }
 }

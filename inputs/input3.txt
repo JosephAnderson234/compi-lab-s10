@@ -1,6 +1,9 @@
-var int x,y;
-var float z;
-x = 1;
-y = 2;
-z = 4;
-print(x+y+z)
+fun void saludar()
+    print(100)
+endfun
+
+fun void main()
+
+    saludar()
+
+endfun

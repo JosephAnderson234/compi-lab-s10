@@ -86,6 +86,9 @@ void Programa::accept(Visitor* visitor) {
     visitor->visit(this);
 }
 
+int UnaryExp::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -452,3 +455,25 @@ void EVALVisitor::visit(ContinueStmt* stm){
     throw ContinueException();
 }
 
+int EVALVisitor::visit(UnaryExp* exp) {
+    int v = exp->operand->accept(this);
+    switch (exp->op) {
+        case NOT_OP:
+            return !v;
+        default:    
+            cout << "Operador desconocido" << endl;
+            return 0;
+    }
+}
+
+int PrintVisitor::visit(UnaryExp* exp) {
+    switch (exp->op) {
+        case NOT_OP:
+            cout << "not ";
+            break;
+        default:
+            cout << "Operador desconocido" << endl;
+    }
+    exp->operand->accept(this);
+    return 0;
+}

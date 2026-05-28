@@ -1,0 +1,45 @@
+var int i, suma;
+
+fun void imprimir(int x)
+
+    print(x)
+
+endfun
+
+
+fun bool esLimite(int x)
+
+    return x == 5
+
+endfun
+
+
+fun void recorrer()
+
+    i = 0;
+    suma = 0;
+
+    while true do
+
+        if esLimite(i) then
+            break
+        endif
+
+        suma += i;
+
+        imprimir(suma);
+
+        i += 1
+
+    endwhile
+
+endfun
+
+
+fun void main()
+
+    recorrer();
+
+    print(999)
+
+endfun

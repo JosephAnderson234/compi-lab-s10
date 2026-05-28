@@ -1,8 +1,11 @@
-var int x;
-x = 5; 
-if x then
-    var int x;
-    x = 4;
-    print(x)
-endif;
-print(x)
+fun void mostrar(int x, int y)
+
+    print(x + y)
+
+endfun
+
+fun void main()
+
+    mostrar(4, 7)
+
+endfun

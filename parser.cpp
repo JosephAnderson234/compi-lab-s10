@@ -205,11 +205,43 @@ Stmt *Parser::parsestmt() {
 }
 
 Exp* Parser::parseCEXP() {
+    Exp* r = parseBFactor();
+    while(match(Token::AND) || match(Token::OR)){
+        BinaryOp op;
+        if (previous->type == Token::AND){
+            op = AND_OP;
+        }
+        else{
+            op = OR_OP;
+        }
+        Exp* l = parseBFactor();
+        r = new BinaryExp(l, r, op);
+    }
+    return r;
+}
+
+Exp* Parser::parseBFactor(){
+    if(match(Token::NOT)){
+        UnaryExp* u = new UnaryExp();
+        Exp* f = parseCompExp();
+        u->operand = f;
+        u->op = NOT_OP;
+        return u;
+    }
+    else{
+        return parseCompExp();
+    }
+}
+
+Exp* Parser::parseCompExp() {
     Exp* l = parseAEXP();
-    while (match(Token::EQUIV)|| match(Token::LET)) {
+    while (match(Token::EQUIV)|| match(Token::LET) || match(Token::LORT)) {
         BinaryOp op;
         if (previous->type == Token::EQUIV){
             op = EQUIV_OP;
+        }
+        else if (previous->type == Token::LORT){
+            op = LORT_OP;
         }
         else{
             op = LET_OP;
@@ -219,6 +251,7 @@ Exp* Parser::parseCEXP() {
     }
     return l;
 }
+
 Exp* Parser::parseAEXP() {
     Exp* l = parseE();
     while (match(Token::PLUS) || match(Token::MINUS)) {
@@ -234,7 +267,6 @@ Exp* Parser::parseAEXP() {
     }
     return l;
 }
-
 
 
 Exp* Parser::parseE() {

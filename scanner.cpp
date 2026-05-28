@@ -54,6 +54,9 @@ Token* Scanner::nextToken() {
             current++;
         string lexema = input.substr(first, current - first);
         if (lexema=="break") return new Token(Token::BREAK, input, first, current - first);
+        if (lexema=="and") return new Token(Token::AND, input, first, current - first);
+        if (lexema=="or") return new Token(Token::OR, input, first, current - first);
+        if (lexema=="not") return new Token(Token::NOT, input, first, current - first);
         if (lexema=="continue") return new Token(Token::CONTINUE, input, first, current - first);
         if (lexema=="def") return new Token(Token::DEF, input, first, current - first);
         if (lexema=="endfun") return new Token(Token::ENDFUN, input, first, current - first);
@@ -78,7 +81,16 @@ Token* Scanner::nextToken() {
         switch (c) {
             case '\'':
             case ':': token = new Token(Token::DOSPUNTOS,  c); break; 
-            case '<': token = new Token(Token::LET,  c); break;                  
+            case '<': 
+            if (input[current+1]=='=')
+            {
+                current++;
+                token = new Token(Token::LORT, input, first, current + 1 - first);
+            }
+            else{
+                token = new Token(Token::LET,   c);
+            }
+            break;
             case ',': token = new Token(Token::COMA,  c); break;
             case ';': token = new Token(Token::SEMICOL,  c); break;
             case '=': 
