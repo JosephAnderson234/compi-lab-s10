@@ -20,15 +20,21 @@ enum BinaryOp {
     DIV_OP,
     LET_OP,
     EQUIV_OP,
-    POW_OP
+    POW_OP,
+    LORT_OP,
+    AND_OP,
+    OR_OP
 };
-
+enum UnaryOp {
+    NOT_OP
+};
 // Clase abstracta Exp
 class Exp {
 public:
     virtual int  accept(Visitor* visitor) = 0;
     virtual ~Exp() = 0;  // Destructor puro → clase abstracta
     static string binopToChar(BinaryOp op);  // Conversión operador → string
+    static string unopToChar(UnaryOp op);  // Conversión operador → string
 };
 
 // Expresión binaria
@@ -47,11 +53,21 @@ class BooleanExp : public Exp {
 public:
     bool value;
     int accept(Visitor* visitor);
-    BooleanExp(bool e){
+    BooleanExp(bool e) {
         value = e;
-    };
-    ~BooleanExp(){};
+    }
+    ~BooleanExp() {};
 };
+
+class UnaryExp : public Exp {
+public:
+    Exp* operand;
+    UnaryOp op;
+    int accept(Visitor* visitor);
+    UnaryExp(){};
+    ~UnaryExp(){};
+};
+
 
 // Expresión numérica
 class NumberExp : public Exp {

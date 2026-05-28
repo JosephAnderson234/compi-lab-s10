@@ -102,7 +102,9 @@ Fundec* Parser::parsefundec(){
     
     }
     match(Token::RPAREN);
-    match(Token::DOSPUNTOS);
+    if (check(Token::DOSPUNTOS)) {
+        match(Token::DOSPUNTOS);
+    }
     fd->cuerpo = parseBody();
     match(Token::ENDFUN);
     return fd;
@@ -234,11 +236,43 @@ Stmt *Parser::parsestmt() {
 }
 
 Exp* Parser::parseCEXP() {
+    Exp* r = parseBFactor();
+    while(match(Token::AND) || match(Token::OR)){
+        BinaryOp op;
+        if (previous->type == Token::AND){
+            op = AND_OP;
+        }
+        else{
+            op = OR_OP;
+        }
+        Exp* l = parseBFactor();
+            r = new BinaryExp(r, l, op);
+    }
+    return r;
+}
+
+Exp* Parser::parseBFactor(){
+    if(match(Token::NOT)){
+        UnaryExp* u = new UnaryExp();
+        Exp* f = parseBFactor();
+        u->operand = f;
+        u->op = NOT_OP;
+        return u;
+    }
+    else{
+        return parseCompExp();
+    }
+}
+
+Exp* Parser::parseCompExp() {
     Exp* l = parseAEXP();
-    while (match(Token::EQUIV)|| match(Token::LET)) {
+    while (match(Token::EQUIV)|| match(Token::LET) || match(Token::LORT)) {
         BinaryOp op;
         if (previous->type == Token::EQUIV){
             op = EQUIV_OP;
+        }
+        else if (previous->type == Token::LORT){
+            op = LORT_OP;
         }
         else{
             op = LET_OP;
@@ -248,6 +282,7 @@ Exp* Parser::parseCEXP() {
     }
     return l;
 }
+
 Exp* Parser::parseAEXP() {
     Exp* l = parseE();
     while (match(Token::PLUS) || match(Token::MINUS)) {
@@ -263,7 +298,6 @@ Exp* Parser::parseAEXP() {
     }
     return l;
 }
-
 
 
 Exp* Parser::parseE() {
@@ -298,6 +332,12 @@ Exp* Parser::parseF() {
     if (match(Token::NUM)) {
         return new NumberExp(stoi(previous->text));
     }
+    else if (match(Token::TRUE)) {
+        return new BooleanExp(true);
+    }
+    else if (match(Token::FALSE)) {
+        return new BooleanExp(false);
+    }
     else if (match(Token::ID)) {
         string variable = previous ->text;
         if(match(Token::LPAREN)){
@@ -324,12 +364,6 @@ Exp* Parser::parseF() {
         e = parseCEXP();
         match(Token::RPAREN);
         return new SqrtExp(e);
-    }
-    else if (match(Token::TRUE)){
-        return new BooleanExp(true);
-    }
-    else if (match(Token::FALSE)){
-        return new BooleanExp(false);
     }
     else {
         throw runtime_error("Error sintáctico");

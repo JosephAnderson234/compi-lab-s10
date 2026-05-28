@@ -19,7 +19,11 @@ public:
         RPAREN,  // )
         PRINT,
         WHILE,
+        AND,
+        OR,
+        NOT,
         LET,
+        LORT,
         BREAK,
         CONTINUE,
         DEF,

@@ -60,9 +60,10 @@ ostream& operator<<(ostream& outs, const Token& tok) {
         case Token::CONTINUE:    outs << "TOKEN(CONTINUE, \""    << tok.text << "\")"; break;
         case Token::TRUE:    outs << "TOKEN(TRUE)"; break;
         case Token::FALSE:    outs << "TOKEN(FALSE)"; break;
-
-
-
+        case Token::AND:    outs << "TOKEN(AND, \""    << tok.text << "\")"; break;
+        case Token::OR:    outs << "TOKEN(OR, \""    << tok.text << "\")"; break;
+        case Token::NOT:    outs << "TOKEN(NOT, \""    << tok.text << "\")"; break;
+        case Token::LORT:    outs << "TOKEN(LORT, \""    << tok.text << "\")"; break;
         case Token::END:    outs << "TOKEN(END)"; break;
     }
     return outs;

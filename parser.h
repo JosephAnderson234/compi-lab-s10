@@ -22,6 +22,8 @@ public:
     Vardec* parsevardec();
     Exp* parseAEXP();
     Exp* parseCEXP();                   // Regla gramatical P
+    Exp* parseBFactor();                   // Regla gramatical R
+    Exp* parseCompExp();                   // Regla gramatical C
     Exp* parseE();                   // Regla gramatical E
     Exp* parseT();                   // Regla gramatical T
     Exp* parseF();                   // Regla gramatical F

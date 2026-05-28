@@ -26,6 +26,10 @@ int NumberExp::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
 
+int BooleanExp::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
+
 int IdExp::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
@@ -86,6 +90,10 @@ void Programa::accept(Visitor* visitor) {
     visitor->visit(this);
 }
 
+int UnaryExp::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
+
 void FCallStmt::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
@@ -95,11 +103,6 @@ void AssigPlusStmt::accept(Visitor* visitor) {
 }
 
 void DoWhileStmt::accept(Visitor* visitor) {
-    return visitor->visit(this);
-}
-
-
-int BooleanExp::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -113,6 +116,11 @@ int PrintVisitor::visit(BinaryExp* exp) {
 
 int PrintVisitor::visit(NumberExp* exp) {
     cout << exp->value;
+    return 0;
+}
+
+int PrintVisitor::visit(BooleanExp* exp) {
+    cout << (exp->value ? "true" : "false");
     return 0;
 }
 
@@ -166,6 +174,15 @@ int EVALVisitor::visit(BinaryExp* exp) {
         case EQUIV_OP:
             result = (v1 == v2);
             break;
+        case AND_OP:
+            result = (v1 != 0 && v2 != 0);
+            break;
+        case OR_OP:
+            result = (v1 != 0 || v2 != 0);
+            break;
+        case LORT_OP:
+            result = (v1 <= v2);
+            break;
         default:
             cout << "Operador desconocido" << endl;
             result = 0;
@@ -175,6 +192,10 @@ int EVALVisitor::visit(BinaryExp* exp) {
 
 int EVALVisitor::visit(NumberExp* exp) {
     return exp->value;
+}
+
+int EVALVisitor::visit(BooleanExp* exp) {
+    return exp->value ? 1 : 0;
 }
 
 int EVALVisitor::visit(SqrtExp* exp) {
@@ -467,6 +488,29 @@ void EVALVisitor::visit(ContinueStmt* stm){
     throw ContinueException();
 }
 
+int EVALVisitor::visit(UnaryExp* exp) {
+    int v = exp->operand->accept(this);
+    switch (exp->op) {
+        case NOT_OP:
+            return !v;
+        default:    
+            cout << "Operador desconocido" << endl;
+            return 0;
+    }
+}
+
+int PrintVisitor::visit(UnaryExp* exp) {
+    switch (exp->op) {
+        case NOT_OP:
+            cout << "not ";
+            break;
+        default:
+            cout << "Operador desconocido" << endl;
+    }
+    exp->operand->accept(this);
+    return 0;
+}
+
 void PrintVisitor::visit(FCallStmt* stm) {
     cout << stm->nombre << "(" ;
     for (auto i:stm->argumentos){
@@ -526,14 +570,4 @@ void EVALVisitor::visit(DoWhileStmt* stm) {
             continue; 
         }
     } while (stm->condicion->accept(this) != 0);
-}
-
-
-int PrintVisitor::visit(BooleanExp* exp) {
-    cout << (exp->value ? "true" : "false");
-    return 0;
-}
-
-int EVALVisitor::visit(BooleanExp* exp) {
-    return exp->value ? 1 : 0;
 }

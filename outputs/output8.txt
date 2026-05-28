@@ -1,4 +1,19 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+var bool x,y,
+def void main():
+    x = false
+    y = true
+    if not x or y then
+        print (10)
+else
+        print (20)
+    endif
+endfun
+
+Interprete:
+20
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

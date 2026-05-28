@@ -8,12 +8,14 @@
 
 class BinaryExp;
 class NumberExp;
+class BooleanExp;
 class SqrtExp;
 
 class Visitor {
 public:
     virtual int visit(BinaryExp* exp) = 0;
     virtual int visit(NumberExp* exp) = 0;
+    virtual int visit(BooleanExp* exp) = 0;
     virtual int visit(IdExp* exp) = 0;
     virtual int visit(SqrtExp* exp) = 0;
     virtual void visit(AsignStmt* stm) = 0;
@@ -28,11 +30,11 @@ public:
     virtual void visit(BreakStmt * stm) = 0;
     virtual void visit(ContinueStmt * stm) = 0;
     virtual void visit(Fundec* fd) = 0;
+    virtual int visit(UnaryExp* exp) = 0;
     virtual void visit(FCallStmt* stm) = 0;
     virtual void visit(Programa* program) = 0;
     virtual void visit(AssigPlusStmt* stm) = 0;
     virtual void visit(DoWhileStmt* stm) = 0;
-    virtual int visit(BooleanExp* exp) = 0;
 };
 
 class PrintVisitor : public Visitor {
@@ -46,6 +48,7 @@ public:
     }
     int visit(BinaryExp* exp) override;
     int visit(NumberExp* exp) override;
+    int visit(BooleanExp* exp) override;
     int visit(SqrtExp* exp) override;
     void visit(AsignStmt* stm) override;
     void visit(PrintStmt* stm) override;
@@ -54,6 +57,7 @@ public:
     int visit(IdExp* exp) override;
     void visit(IfStmt* stm) override;
     void visit(WhileStmt* stm) override;
+    int visit(UnaryExp* exp) override;
     void visit(ForStmt* stm) override;
     void visit(Vardec* vd) ;
     int  visit(FcallExp* exp) ;
@@ -65,7 +69,6 @@ public:
     void visit(FCallStmt* stm) override;
     void visit(AssigPlusStmt* stm) override;
     void visit(DoWhileStmt* stm) override;
-    int visit(BooleanExp* exp) override;
 };
 
 class EVALVisitor : public Visitor {
@@ -75,6 +78,7 @@ public:
     int retorno;
     int visit(BinaryExp* exp) override;
     int visit(NumberExp* exp) override;
+    int visit(BooleanExp* exp) override;
     int visit(SqrtExp* exp) override;
     void visit(AsignStmt* stm) override;
     void visit(PrintStmt* stm) override;
@@ -83,6 +87,7 @@ public:
     void visit(WhileStmt* stm) override;
     void visit(ForStmt* stm) override;
     void visit(Programa* program) override;
+    int visit(UnaryExp* exp) override;
     void visit(Vardec* vd);
     void visit(Body* cuerpo);
     void visit(BreakStmt * stm);
@@ -94,7 +99,6 @@ public:
     void visit(FCallStmt* stm) override;
     void visit(AssigPlusStmt* stm) override;
     void visit(DoWhileStmt* stm) override;
-    int visit(BooleanExp* exp) override;
 };
 
 

@@ -1,4 +1,37 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+var int i,suma,
+def void imprimir(x,):
+    print (x)
+endfun
+def bool esLimite(x,):
+    return x = 5
+endfun
+def void recorrer():
+    i = 0
+    suma = 0
+    while true do
+        if esLimite(i,) then
+            break
+        endif
+        suma += i
+        imprimir(suma,)
+        i += 1
+    endwhile
+endfun
+def void main():
+    recorrer()
+    print (999)
+endfun
+
+Interprete:
+0
+1
+3
+6
+10
+999
+
 
 === STDERR ===
-Error al parsear: Error sintáctico
