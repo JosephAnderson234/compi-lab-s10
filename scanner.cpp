@@ -55,7 +55,7 @@ Token* Scanner::nextToken() {
         string lexema = input.substr(first, current - first);
         if (lexema=="break") return new Token(Token::BREAK, input, first, current - first);
         if (lexema=="continue") return new Token(Token::CONTINUE, input, first, current - first);
-        if (lexema=="def") return new Token(Token::DEF, input, first, current - first);
+        if (lexema=="fun") return new Token(Token::DEF, input, first, current - first);
         if (lexema=="endfun") return new Token(Token::ENDFUN, input, first, current - first);
         if (lexema=="return") return new Token(Token::RETURN, input, first, current - first);
         if (lexema=="sqrt") return new Token(Token::SQRT, input, first, current - first);
@@ -69,6 +69,7 @@ Token* Scanner::nextToken() {
         if (lexema=="endfor") return new Token(Token::ENDFOR, input, first, current - first);
         if (lexema=="while") return new Token(Token::WHILE, input, first, current - first);
         if (lexema=="endwhile") return new Token(Token::ENDWHILE, input, first, current - first);
+        if (lexema=="enddo") return new Token(Token::ENDWHILE, input, first, current - first);
         if (lexema=="do") return new Token(Token::DO, input, first, current - first); 
         if (lexema=="var") return new Token(Token::VAR, input, first, current - first);            
         else return new Token(Token::ID, input, first, current - first);
