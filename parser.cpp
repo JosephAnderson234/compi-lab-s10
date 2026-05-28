@@ -198,10 +198,39 @@ Stmt *Parser::parsestmt() {
         
     else if (match(Token::ID)) {
         string texto = previous->text;
-        match(Token::ASSIGN);
-        e = parseCEXP();
-        return new AsignStmt(texto,e);
+        if (match(Token::LPAREN)){
+            FCallStmt* fcall = new FCallStmt();
+            fcall -> nombre = texto;
+            if(!check(Token::RPAREN)){
+                fcall -> argumentos.push_back(parseCEXP());
+                while(match(Token::COMA)){
+                    fcall -> argumentos.push_back(parseCEXP());
+                }
+            }
+            match(Token::RPAREN);
+            return fcall;
+        }
+        else if (match(Token::PLUS)){
+            if (!match(Token::ASSIGN)){
+                throw runtime_error("Error sintáctico: se esperaba '=' después de '+'.");
+            }
+            e = parseCEXP();
+            return new AssigPlusStmt(texto,e);
+        }
+        else {
+            match(Token::ASSIGN);
+            e = parseCEXP();
+            return new AsignStmt(texto,e);
+        }
+    } else if (match(Token::DO)){
+        DoWhileStmt* dowhile = new DoWhileStmt();
+        dowhile->cuerpo = parseBody();
+        match(Token::WHILE);
+        dowhile->condicion = parseCEXP();
+        match(Token::ENDWHILE);
+        return dowhile;
     }
+
 }
 
 Exp* Parser::parseCEXP() {

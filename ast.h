@@ -156,6 +156,33 @@ public:
     ~ContinueStmt(){};
 };
 
+class FCallStmt : public Stmt{
+public:
+    string nombre;
+    vector<Exp*> argumentos;
+    void accept(Visitor* visitor);
+    FCallStmt();
+    ~FCallStmt();
+};
+
+class AssigPlusStmt : public Stmt {
+public:
+    string variable;
+    Exp* exp;
+    void accept(Visitor* visitor) override;
+    AssigPlusStmt(string, Exp*);
+    ~AssigPlusStmt();
+};
+
+class DoWhileStmt : public Stmt{
+public:
+    Body* cuerpo;
+    Exp* condicion;
+    void accept(Visitor* visitor) override;
+    DoWhileStmt();
+    ~DoWhileStmt();
+};
+
 
 class Vardec{
 public:    

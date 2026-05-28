@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var int x;
 
 fun void main()
@@ -11,3 +12,18 @@ fun void main()
     enddo
 
 endfun
+=======
+def int saludar():
+    print(100)
+endfun
+
+def void main():
+    var int x;
+    saludar();
+    x = 0;
+    do 
+        print(x);
+        x += 1
+    while x < 10 endwhile
+endfun
+>>>>>>> 23680c575f8f3062c8823b0a1c85788f0774df19

@@ -1,14 +1,41 @@
 Scanner
 
+<<<<<<< HEAD
 TOKEN(VAR, "var")
 TOKEN(ID, "int")
 TOKEN(ID, "x")
 TOKEN(SEMICOL, ";")
 TOKEN(ID, "fun")
+=======
+TOKEN(DEF, "def")
+TOKEN(ID, "int")
+TOKEN(ID, "saludar")
+TOKEN(LPAREN, "(")
+TOKEN(RPAREN, ")")
+TOKEN(DOSPUNTOS, ":")
+TOKEN(PRINT, "print")
+TOKEN(LPAREN, "(")
+TOKEN(NUM, "100")
+TOKEN(RPAREN, ")")
+TOKEN(ENDFUN, "endfun")
+TOKEN(DEF, "def")
+>>>>>>> 23680c575f8f3062c8823b0a1c85788f0774df19
 TOKEN(ID, "void")
 TOKEN(ID, "main")
 TOKEN(LPAREN, "(")
 TOKEN(RPAREN, ")")
+<<<<<<< HEAD
+=======
+TOKEN(DOSPUNTOS, ":")
+TOKEN(VAR, "var")
+TOKEN(ID, "int")
+TOKEN(ID, "x")
+TOKEN(SEMICOL, ";")
+TOKEN(ID, "saludar")
+TOKEN(LPAREN, "(")
+TOKEN(RPAREN, ")")
+TOKEN(SEMICOL, ";")
+>>>>>>> 23680c575f8f3062c8823b0a1c85788f0774df19
 TOKEN(ID, "x")
 TOKEN(ASSIGN, "=")
 TOKEN(NUM, "0")
@@ -26,8 +53,13 @@ TOKEN(NUM, "1")
 TOKEN(WHILE, "while")
 TOKEN(ID, "x")
 TOKEN(LET, "<")
+<<<<<<< HEAD
 TOKEN(NUM, "5")
 TOKEN(ID, "enddo")
+=======
+TOKEN(NUM, "10")
+TOKEN(ENDWHILE, "endwhile")
+>>>>>>> 23680c575f8f3062c8823b0a1c85788f0774df19
 TOKEN(ENDFUN, "endfun")
 TOKEN(END)
 

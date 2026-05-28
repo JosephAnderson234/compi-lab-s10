@@ -87,9 +87,17 @@ void Programa::accept(Visitor* visitor) {
 }
 
 int UnaryExp::accept(Visitor* visitor) {
+void FCallStmt::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
 
+void AssigPlusStmt::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
+
+void DoWhileStmt::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 int PrintVisitor::visit(BinaryExp* exp) {
@@ -476,4 +484,63 @@ int PrintVisitor::visit(UnaryExp* exp) {
     }
     exp->operand->accept(this);
     return 0;
+void PrintVisitor::visit(FCallStmt* stm) {
+    cout << stm->nombre << "(" ;
+    for (auto i:stm->argumentos){
+        i->accept(this);
+        cout << ",";
+    }
+    cout << ")" << endl;
+}
+
+
+void EVALVisitor::visit(FCallStmt* stm) {
+    Fundec* fd = fmemoria[stm->nombre];
+    memoria.add_level();
+    for (int i=0; i<fd->id_parametros.size();i++){
+        memoria.add_var(fd->id_parametros[i],stm->argumentos[i]->accept(this));
+    }
+    try
+    {
+        fd->cuerpo->accept(this);
+    }
+    catch(const ReturnException& e)
+    {
+    }
+
+    memoria.remove_level();
+}
+
+void PrintVisitor::visit(AssigPlusStmt* stm) {
+    cout << stm->variable << " += ";
+    stm->exp->accept(this);
+    cout << endl;
+}
+
+void EVALVisitor::visit(AssigPlusStmt* stm) {
+    int valor_actual = memoria.lookup(stm->variable);
+    int valor_incremento = stm->exp->accept(this);
+    memoria.update(stm->variable, valor_actual + valor_incremento);
+}
+
+void PrintVisitor::visit(DoWhileStmt* stm) {
+    cout << "do" << endl;
+    stm->cuerpo->accept(this);
+    cout << "while ";
+    stm->condicion->accept(this);
+    cout << endl;
+}
+
+void EVALVisitor::visit(DoWhileStmt* stm) {
+    do {
+        try {
+            stm->cuerpo->accept(this);
+        }
+        catch(const BreakException&){
+            break; 
+        }
+        catch(const ContinueException&){
+            continue; 
+        }
+    } while (stm->condicion->accept(this) != 0);
 }
