@@ -65,6 +65,24 @@ AsignStmt::~AsignStmt() {
 
 }
 
+FCallStmt::FCallStmt(){}
+FCallStmt::~FCallStmt(){}
+
+AssigPlusStmt::AssigPlusStmt(string texto, Exp * e) {
+    variable=  texto;
+    exp = e;
+}
+
+AssigPlusStmt::~AssigPlusStmt() {
+    delete exp;
+}
+
+DoWhileStmt::~DoWhileStmt() {
+    delete cuerpo;
+    delete condicion;
+}
+DoWhileStmt::DoWhileStmt() {}
+
 // ------------------ NumberExp ------------------
 IdExp::IdExp(string v) : value(v) {}
 

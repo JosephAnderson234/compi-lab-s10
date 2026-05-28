@@ -1,21 +1,13 @@
-var int y,z;
-
-def int factorial(int x):
-    if x == 1 then 
-        return 1
-    else
-        return x * factorial(x-1)
-    endif
+def int saludar():
+    print(100)
 endfun
 
 def void main():
     var int x;
-    x = 1;
-    while x<10 do 
-        print(factorial(x));
-        x = x + 1; 
-        if 5<x then break endif;
-        print(4);
-        print(34)
-    endwhile
+    saludar();
+    x = 0;
+    do 
+        print(x);
+        x += 1
+    while x < 10 endwhile
 endfun

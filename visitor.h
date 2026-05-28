@@ -28,7 +28,10 @@ public:
     virtual void visit(BreakStmt * stm) = 0;
     virtual void visit(ContinueStmt * stm) = 0;
     virtual void visit(Fundec* fd) = 0;
+    virtual void visit(FCallStmt* stm) = 0;
     virtual void visit(Programa* program) = 0;
+    virtual void visit(AssigPlusStmt* stm) = 0;
+    virtual void visit(DoWhileStmt* stm) = 0;
 };
 
 class PrintVisitor : public Visitor {
@@ -58,6 +61,9 @@ public:
     void visit(Fundec* fd) ;
     void visit(Body* cuerpo);
     void imprimir(Programa* program);
+    void visit(FCallStmt* stm) override;
+    void visit(AssigPlusStmt* stm) override;
+    void visit(DoWhileStmt* stm) override;
 };
 
 class EVALVisitor : public Visitor {
@@ -83,6 +89,9 @@ public:
     void visit(ReturnStm* stm) ;
     void visit(Fundec* fd) ;
     void interprete(Programa* program);
+    void visit(FCallStmt* stm) override;
+    void visit(AssigPlusStmt* stm) override;
+    void visit(DoWhileStmt* stm) override;
 };
 
 
