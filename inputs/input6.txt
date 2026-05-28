@@ -1,0 +1,14 @@
+var int i;
+
+fun void main()
+
+    i = 1;
+
+    while i < 10 do
+
+        print(i);
+        i += 2
+
+    endwhile
+
+endfun

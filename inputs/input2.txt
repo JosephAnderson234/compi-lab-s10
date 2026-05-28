@@ -1,6 +1,21 @@
-var int x;
-x = 10; 
-while x do
-    print(x);
-    x = x - 1
-endwhile 
+var bool continuar;
+var int i;
+
+fun void main()
+
+    continuar = true;
+    i = 0;
+
+    do
+
+        print(i);
+        i += 1;
+
+        if i == 3 then
+            continuar = false
+        endif
+
+    while continuar
+    enddo
+
+endfun

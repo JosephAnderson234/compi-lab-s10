@@ -1,21 +1,21 @@
 === STDOUT ===
 Parseo exitoso
 Codigo:
-var int x,
+var int i,
 def void main():
-    x = 0
-    do
-        print (x)
-        x += 1
-while x < 5
+    i = 1
+    while i < 10 do
+        print (i)
+        i += 2
+    endwhile
 endfun
 
 Interprete:
-0
 1
-2
 3
-4
+5
+7
+9
 
 
 === STDERR ===

@@ -1,0 +1,40 @@
+=== STDOUT ===
+Parseo exitoso
+Codigo:
+var int i,
+def void imprimir(x,):
+    print (x)
+endfun
+def int fibo(n,):
+    if n = 0 then
+        return 0
+else
+        if n = 1 then
+            return 1
+else
+            return fibo(n - 1,) + fibo(n - 2,)
+        endif
+    endif
+endfun
+def void main():
+    i = 0
+    while i < 10 do
+        imprimir(fibo(i,),)
+        i += 1
+    endwhile
+endfun
+
+Interprete:
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+
+
+=== STDERR ===

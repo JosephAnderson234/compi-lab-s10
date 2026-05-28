@@ -1,13 +1,13 @@
-def int saludar():
-    print(100)
-endfun
+var int x;
 
-def void main():
-    var int x;
-    saludar();
+fun void main()
+
     x = 0;
-    do 
+
+    do
         print(x);
         x += 1
-    while x < 10 endwhile
+    while x < 5
+    enddo
+
 endfun

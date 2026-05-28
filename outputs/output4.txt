@@ -1,4 +1,15 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+def void mostrar(x,y,):
+    print (x + y)
+endfun
+def void main():
+    mostrar(4,7,)
+endfun
+
+Interprete:
+11
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

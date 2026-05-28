@@ -1,0 +1,14 @@
+var bool x, y;
+
+fun void main()
+
+    x = false;
+    y = true;
+
+    if not ( x or y ) then
+        print(10)
+    else
+        print(20)
+    endif
+
+endfun

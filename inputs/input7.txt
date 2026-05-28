@@ -1,0 +1,14 @@
+var bool a, b;
+
+fun void main()
+
+    a = true;
+    b = true;
+
+    if a and b then
+        print(1)
+    else
+        print(0)
+    endif
+
+endfun

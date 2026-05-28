@@ -1,4 +1,23 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+var bool continuar,
+var int i,
+def void main():
+    continuar = true
+    i = 0
+    do
+        print (i)
+        i += 1
+        if i = 3 then
+            continuar = false
+        endif
+while continuar
+endfun
+
+Interprete:
+0
+
 
 === STDERR ===
-Error al parsear: Error sintáctico
+[Advertencia] Variable no encontrada: true

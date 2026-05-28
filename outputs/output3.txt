@@ -1,4 +1,15 @@
 === STDOUT ===
+Parseo exitoso
+Codigo:
+def void saludar():
+    print (100)
+endfun
+def void main():
+    saludar()
+endfun
+
+Interprete:
+100
+
 
 === STDERR ===
-Error al parsear: Error sintáctico

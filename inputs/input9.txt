@@ -1,0 +1,39 @@
+var int i;
+
+fun void imprimir(int x)
+
+    print(x)
+
+endfun
+
+
+fun int fibo(int n)
+
+    if n == 0 then
+        return(0)
+    else
+
+        if n == 1 then
+            return(1)
+        else
+            return(fibo(n - 1) + fibo(n - 2))
+        endif
+
+    endif
+
+endfun
+
+
+fun void main()
+
+    i = 0;
+
+    while i < 10 do
+
+        imprimir(fibo(i));
+
+        i += 1
+
+    endwhile
+
+endfun
