@@ -40,6 +40,8 @@ public:
         ELSE,
         SEMICOL,
         ASSIGN,
+        TRUE,
+        FALSE,
         SQRT,    // sqrt
         NUM,     // Número
         ERR,     // Error

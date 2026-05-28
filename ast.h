@@ -43,6 +43,16 @@ public:
 
 };
 
+class BooleanExp : public Exp {
+public:
+    bool value;
+    int accept(Visitor* visitor);
+    BooleanExp(bool e){
+        value = e;
+    };
+    ~BooleanExp(){};
+};
+
 // Expresión numérica
 class NumberExp : public Exp {
 public:

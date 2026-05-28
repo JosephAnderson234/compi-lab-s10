@@ -17,7 +17,8 @@ endfun
 
 Interprete:
 0
+1
+2
 
 
 === STDERR ===
-[Advertencia] Variable no encontrada: true

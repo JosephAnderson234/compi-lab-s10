@@ -325,6 +325,12 @@ Exp* Parser::parseF() {
         match(Token::RPAREN);
         return new SqrtExp(e);
     }
+    else if (match(Token::TRUE)){
+        return new BooleanExp(true);
+    }
+    else if (match(Token::FALSE)){
+        return new BooleanExp(false);
+    }
     else {
         throw runtime_error("Error sintáctico");
     }

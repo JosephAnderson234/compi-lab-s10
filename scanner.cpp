@@ -71,7 +71,9 @@ Token* Scanner::nextToken() {
         if (lexema=="endwhile") return new Token(Token::ENDWHILE, input, first, current - first);
         if (lexema=="enddo") return new Token(Token::ENDWHILE, input, first, current - first);
         if (lexema=="do") return new Token(Token::DO, input, first, current - first); 
-        if (lexema=="var") return new Token(Token::VAR, input, first, current - first);            
+        if (lexema=="var") return new Token(Token::VAR, input, first, current - first);     
+        if (lexema=="true") return new Token(Token::TRUE, input, first, current - first);
+        if (lexema=="false") return new Token(Token::FALSE, input, first, current - first);       
         else return new Token(Token::ID, input, first, current - first);
     }
     // Operadores

@@ -32,6 +32,7 @@ public:
     virtual void visit(Programa* program) = 0;
     virtual void visit(AssigPlusStmt* stm) = 0;
     virtual void visit(DoWhileStmt* stm) = 0;
+    virtual int visit(BooleanExp* exp) = 0;
 };
 
 class PrintVisitor : public Visitor {
@@ -64,6 +65,7 @@ public:
     void visit(FCallStmt* stm) override;
     void visit(AssigPlusStmt* stm) override;
     void visit(DoWhileStmt* stm) override;
+    int visit(BooleanExp* exp) override;
 };
 
 class EVALVisitor : public Visitor {
@@ -92,6 +94,7 @@ public:
     void visit(FCallStmt* stm) override;
     void visit(AssigPlusStmt* stm) override;
     void visit(DoWhileStmt* stm) override;
+    int visit(BooleanExp* exp) override;
 };
 
 

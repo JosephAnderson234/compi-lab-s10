@@ -97,6 +97,11 @@ void AssigPlusStmt::accept(Visitor* visitor) {
 void DoWhileStmt::accept(Visitor* visitor) {
     return visitor->visit(this);
 }
+
+
+int BooleanExp::accept(Visitor* visitor) {
+    return visitor->visit(this);
+}
 ///////////////////////////////////////////////////////////////////////////////////
 
 int PrintVisitor::visit(BinaryExp* exp) {
@@ -521,4 +526,14 @@ void EVALVisitor::visit(DoWhileStmt* stm) {
             continue; 
         }
     } while (stm->condicion->accept(this) != 0);
+}
+
+
+int PrintVisitor::visit(BooleanExp* exp) {
+    cout << (exp->value ? "true" : "false");
+    return 0;
+}
+
+int EVALVisitor::visit(BooleanExp* exp) {
+    return exp->value ? 1 : 0;
 }
